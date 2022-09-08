@@ -1,0 +1,59 @@
+<div class="col-md-12">
+  <form [formGroup]="createPost" enctype="multipart/form-data" (submit)="store()">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <label class="form-label">Category</label>
+        </div>
+        <div class="col-md-8">
+          <select class="form-select" formControlName="category_id">
+            <option value="">Select Category</option>
+            <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
+          </select>
+          <!-- <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger mt-2" >
+            <div *ngIf="f['name']required" >Email is required</div>
+          </div> -->
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <label class="form-label">Title</label>
+        </div>
+        <div class="col-md-8">
+          <input formControlName="name" type="text" class="form-control" placeholder="Enter title">
+          <!-- <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger mt-2" >
+            <div *ngIf="f['name']required" >Email is required</div>
+          </div> -->
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <label class="form-label">Description</label>
+        </div>
+        <div class="col-md-8">
+          <!-- <input formControlName="description" type="text" class="form-control"> -->
+          <ckeditor [editor]="Editor"  formControlName="description" data="<p>Hello, world!</p>"></ckeditor>
+          <!-- <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger mt-2" >
+            <div *ngIf="f['name']required" >Email is required</div>
+          </div> -->
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <label class="form-label">Image</label>
+        </div>
+        <div class="col-md-8">
+          <input (change)="onSelectFile($event)" type="file" class="form-control">
+          <!-- <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger mt-2" >
+            <div *ngIf="f['name']required" >Email is required</div>
+          </div> -->
+        </div>
+      </div>
+
+
+      <div class="text-end mt-5">
+        <button type="submit" [disabled]="!createPost.valid" class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,8 @@
+<div class="p-4 p-md-5 mb-4 rounded text-dark b-gradient">
+  <div class="col-md-6 px-0">
+    <h1 class="display-4 fst-italic fs-1" >{{ lastpost?.name }}</h1>
+    <p class="d-none" >{{ lastpost?.description  }}</p>
+    <p class="lead my-3 " [innerHTML]="lastpost?.description | slice:0:142 "></p>
+    <p class="lead mb-0"><a [routerLink]="['post',lastpost?.id]" class="text-white fw-bold">Continue reading...</a></p>
+  </div>
+</div>

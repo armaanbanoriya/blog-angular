@@ -1,0 +1,24 @@
+<div class="col-md-12">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Subscribe</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let subscribe of subscribers | paginate: { itemsPerPage: 10, currentPage: page }">
+      <tr>
+        <th scope="row">{{ subscribe.id }}</th>
+        <td>{{ subscribe.email }}</td>
+        <td class="bold">
+          <a (click)="delete(subscribe.id)" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete</a></td>
+      </tr>
+
+    </tbody>
+  </table>
+  <div class="text-end">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>

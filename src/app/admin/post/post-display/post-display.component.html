@@ -1,0 +1,36 @@
+<div class="col-md-12">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">category</th>
+        <th scope="col">post title</th>
+        <th scope="col">Description</th>
+        <th scope="col">image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let post of posts | paginate: { itemsPerPage: 10, currentPage: page }">
+      <tr>
+        <th scope="row">{{ post.id }}</th>
+        <td>{{ post.category.name }}</td>
+        <td>{{ post.name }}</td>
+        <td>
+          <p class="d-none">{{ post.description  | slice:0:240}}</p>
+          <p [innerHTML]="post.description  | slice:0:240"></p>
+
+        </td>
+        <td><img src="https://laravel-angular-blog-backend.herokuapp.com/upload/{{ post.image }}" alt="" class="img-fluid"></td>
+        <td class="bold"><a [routerLink]="['post-add',post.id,'edit']" class="btn btn-outline-secondary"><i
+              class="bi bi-pencil-square"></i> Edit</a> &nbsp;&nbsp;
+          <a (click)="delete(post.id)" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete</a></td>
+      </tr>
+    </tbody>
+
+  </table>
+  <div class="text-end">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
+  </div>
+</div>
