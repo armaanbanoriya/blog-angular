@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
-  FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,7 +13,8 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+
+  email: any;
 
   constructor(
     private router: Router,
@@ -24,16 +23,22 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = this.formbuilder.group({
-      email: new FormControl(''),
-      password: new FormControl(''),
-    });
+  }
+
+
+  loginForm = this.formbuilder.group({
+    email: ['', [Validators.required,Validators.minLength(3)]],
+    password: ["",[Validators.required,Validators.minLength(3)]],
+  });
+
+
+  get errors() {
+    return this.loginForm.controls;
   }
 
   submit(): void {
     this.authService
       .login(this.loginForm.getRawValue())
-      .subscribe(
-        () => this.router.navigate(['admin/dashboard']));
+      .subscribe(() => this.router.navigate(['admin/dashboard']));
   }
 }
