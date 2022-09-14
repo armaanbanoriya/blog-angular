@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CredentialInterceptor } from './interceptor/credential.interceptor';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,16 +21,16 @@ import { CredentialInterceptor } from './interceptor/credential.interceptor';
     ReactiveFormsModule,
     FormsModule,
     PaginationModule,
-    CKEditorModule
-
-
+    CKEditorModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true })
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CredentialInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

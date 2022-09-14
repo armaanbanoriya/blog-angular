@@ -9,9 +9,8 @@ import { Post } from '../interface/post';
   providedIn: 'root',
 })
 export class PostService {
-  url = 'https://laravel-angular-blog-backend.herokuapp.com/api/post';
-  customurl = 'https://laravel-angular-blog-backend.herokuapp.com/api';
-  datacheck: any;
+  url = "https://laravel-angular-blog-backend.herokuapp.com/api/post";
+  customurl = "https://laravel-angular-blog-backend.herokuapp.com/api";
 
   constructor(private http: HttpClient) {}
 

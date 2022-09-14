@@ -7,7 +7,7 @@ import { Category } from '../interface/category';
   providedIn: 'root',
 })
 export class CategoryService {
-  url = 'https://laravel-angular-blog-backend.herokuapp.com/api/category';
+  url = "https://laravel-angular-blog-backend.herokuapp.com/api/category";
   constructor(private http: HttpClient) {}
 
   index(): Observable<Category[]>

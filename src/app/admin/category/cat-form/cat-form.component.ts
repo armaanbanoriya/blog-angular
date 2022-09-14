@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Emitter } from 'src/app/emitters/emitter';
 import { CategoryService } from '../../../service/category.service';
 
 @Component({
@@ -51,6 +52,7 @@ export class CatFormComponent implements OnInit {
       ? this.categoryService.store(this.createForm.getRawValue())
       : this.categoryService.update(this.id, this.createForm.getRawValue());
 
-    method.subscribe(() => this.router.navigate(['admin/category']));
+    method.subscribe(data => {Emitter.categoryEmitter.emit()},
+      () => this.router.navigate(['admin/category']));
   }
 }

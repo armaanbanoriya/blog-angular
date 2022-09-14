@@ -7,7 +7,7 @@ import { Subscribers } from '../interface/subscribers';
   providedIn: 'root',
 })
 export class SubscribersService {
-  url = 'https://laravel-angular-blog-backend.herokuapp.com/api/subscribe';
+  url = "https://laravel-angular-blog-backend.herokuapp.com/api/subscribe";
   constructor(private http: HttpClient) {}
 
   index(): Observable<Subscribers[]> {
